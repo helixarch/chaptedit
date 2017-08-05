@@ -24,6 +24,27 @@ cyan=$(tput setaf 6)
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+# Check if dos2unix, unix2dos, iconv, file and uchardet programs exist.
+if ! [[ -x "$(command -v dos2unix)" ]]; then
+	echo "${red}Error: \"dos2unix\" is not installed. Exiting.${normal}"; exit 1
+fi
+
+if ! [[ -x "$(command -v unix2dos)" ]]; then
+	echo "${red}Error: \"unix2dos\" is not installed. Exiting.${normal}"; exit 1
+fi
+
+if ! [[ -x "$(command -v iconv)" ]]; then
+	echo "${red}Error: \"iconv\" is not installed. Exiting.${normal}"; exit 1
+fi
+
+if ! [[ -x "$(command -v file)" ]]; then
+	echo "${red}Error: \"file\" is not installed. Exiting.${normal}"; exit 1
+fi
+
+if ! [[ -x "$(command -v uchardet)" ]]; then
+	echo "${bold}${red}Warning: \"uchardet\" is not installed. Uchardet improves input file's encoding detection but is not mandatory for chaptedit to run.${normal}"
+fi
+
 # Define carriage return and new line
 cr=$(echo -e "\r")
 nl=$(echo -e "\n")
