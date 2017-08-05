@@ -27,12 +27,12 @@ Can read xml type as well, but the output is always txt.
 - - - - -
 
 ### SCREENSHOTS
-![Help examples](https://camo.githubusercontent.com/5bff9f48eec8017d27b6a93eeff4d97ba81daaf6/687474703a2f2f3134312e3233372e302e33363a35303030312f6368617074656469745f68656c705f6578616d706c65732e706e67)  
+![Help examples](https://s1.postimg.org/sue3f7kan/chaptedit_help_examples.png)  
 Help examples
 
 <br>
 
-![Wildcard support](https://camo.githubusercontent.com/e6efd3a47fb8595a0edd1c2111b9aed2f35df784/687474703a2f2f3134312e3233372e302e33363a35303030312f6368617074656469745f77696c64636172642e706e67)  
+![Wildcard support](https://s1.postimg.org/c5uii6zbz/chaptedit_wildcard.png)  
 Wildcard support
 - - - - -
 
