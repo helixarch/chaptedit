@@ -66,7 +66,7 @@ ${cyan}PARAMETERS${normal}
       Searches recursively for chapters files in directory given with -d parameter.
 
   ${bold}-b [Switch]${normal}
-      Backup input file. Makes a copy of the input file in the same directory with the .bak sufix.
+      Backup input file. Makes a copy of the input file in the same directory with the .bak suffix.
       If the backup already exists, it does nothing. If -b is not set and the backup file exists, it is removed.
       Can be used with any other parameter.
 
@@ -485,7 +485,7 @@ check_file ()
 
 	# Detect encoding of input file
 	# We use both file and uchardet (if it is available) because no one is perfect.
-	# file doesn't get right some non-unicode encodings but for UTF-16 is preferable
+	# file doesn't get right some non-unicode encodings, but for UTF-16 is preferable
 	# than uchardet because the latter doesn't specify if it is UTF-16BE or UTF-16LE.
 	# uchardet doesn't exist for Cygwin but does for MinGW. One place you can find a binary is here:
 	# https://sourceforge.net/projects/cbadvanced/files/Repo/
@@ -737,7 +737,7 @@ shift_time ()
 	fi
 
 
-	# Find shift miliseconds
+	# Find shift milliseconds
 	if [[ $sign == "a" ]]; then
 		# Find the first chapter time
 		for ((i=0; i<=${#arraytxt[@]}; i++)); do
@@ -753,10 +753,10 @@ shift_time ()
 			fi
 		done
 
-		# Time in miliseconds of the first chapter
+		# Time in milliseconds of the first chapter
 		pa=$(($(($((10#$ha)) * 3600000)) + $(($((10#$ma)) * 60000)) + $(($((10#$sa)) * 1000)) + $((10#$fa))))
 
-		# Shift miliseconds
+		# Shift milliseconds
 		((p=givenms-pa))
 	elif [[ $sign == "z" ]]; then
 		# Find the last chapter time
@@ -773,13 +773,13 @@ shift_time ()
 			fi
 		done
 
-		# Time in miliseconds of the last chapter
+		# Time in milliseconds of the last chapter
 		pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
-		# Shift miliseconds
+		# Shift milliseconds
 		((p=givenms-pb))
 	else
-		# Shift miliseconds
+		# Shift milliseconds
 		p=$sign$givenms
 	fi
 
@@ -967,10 +967,10 @@ adjust_time ()
 		fi
 	done
 
-	# Time in miliseconds of the first chapter
+	# Time in milliseconds of the first chapter
 	pa=$(($(($((10#$ha)) * 3600000)) + $(($((10#$ma)) * 60000)) + $(($((10#$sa)) * 1000)) + $((10#$fa))))
 
-	# Time in miliseconds of the last chapter
+	# Time in milliseconds of the last chapter
 	pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
 
@@ -1100,10 +1100,10 @@ adjust_time_v2 ()
 		echo "${red}Error: The first or last chapter time is invalid.${normal}"; return 1
 	fi
 
-	# Time in miliseconds of the first chapter
+	# Time in milliseconds of the first chapter
 	pa=$(($(($((10#$ha)) * 3600000)) + $(($((10#$ma)) * 60000)) + $(($((10#$sa)) * 1000)) + $((10#$fa))))
 
-	# Time in miliseconds of the last chapter
+	# Time in milliseconds of the last chapter
 	pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
 
@@ -1347,10 +1347,10 @@ synchronize_with_file ()
 			fi
 		done
 
-		# Time in miliseconds of the first chapter
+		# Time in milliseconds of the first chapter
 		pa=$(($(($((10#$ha)) * 3600000)) + $(($((10#$ma)) * 60000)) + $(($((10#$sa)) * 1000)) + $((10#$fa))))
 
-		# Time in miliseconds of the last chapter
+		# Time in milliseconds of the last chapter
 		pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
 		if (( $pa == $pb )); then
@@ -1493,12 +1493,12 @@ replace_text ()
 		replace2=$replace4
 	fi
 
-	# Define forbitten and allowed regex
-	regexforbittensynbols="^[0-9<>\/:\$=#-,]+$"
+	# Define forbidden and allowed regex
+	regexforbiddensynbols="^[0-9<>\/:\$=#-,]+$"
 	regexallowedtimes="^[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9] --> [0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]$"
 	regexallowedtime="^[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]$"
 	
-	if ! [[  $replace1 =~  $regexallowedtimes ]] && ! [[  $replace1 =~  $regexallowedframes ]] && ! [[  $replace1 =~  $regexallowedtime ]] && ! [[  $replace1 =~  $regexallowedframe ]] && [[ $replace1 =~ $regexforbittensynbols ]]; then
+	if ! [[  $replace1 =~  $regexallowedtimes ]] && ! [[  $replace1 =~  $regexallowedframes ]] && ! [[  $replace1 =~  $regexallowedtime ]] && ! [[  $replace1 =~  $regexallowedframe ]] && [[ $replace1 =~ $regexforbiddensynbols ]]; then
 		echo "${red}Error: You cannot replace this${normal}"; exit 1
 	fi
 
@@ -1668,7 +1668,7 @@ join_txt ()
 			fi
 		done
 
-		# Time in miliseconds of the last chapter of the first file
+		# Time in milliseconds of the last chapter of the first file
 		pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
 
@@ -1688,7 +1688,7 @@ join_txt ()
 			echo "${red}Error: Minutes and seconds must take a value of less than 60${normal}"; exit 1
 		fi
 
-		# Time in miliseconds of jointime
+		# Time in milliseconds of jointime
 		p=$(($(($((10#$h)) * 3600000)) + $(($((10#$m)) * 60000)) + $(($((10#$s)) * 1000)) + $((10#$f))))
 
 
@@ -1796,10 +1796,10 @@ split_txt ()
 		fi
 	done
 
-	# Time in miliseconds of the first chapter
+	# Time in milliseconds of the first chapter
 	pa=$(($(($((10#$ha)) * 3600000)) + $(($((10#$ma)) * 60000)) + $(($((10#$sa)) * 1000)) + $((10#$fa))))
 
-	# Time in miliseconds of the last chapter
+	# Time in milliseconds of the last chapter
 	pb=$(($(($((10#$hb)) * 3600000)) + $(($((10#$mb)) * 60000)) + $(($((10#$sb)) * 1000)) + $((10#$fb))))
 
 
@@ -1826,7 +1826,7 @@ split_txt ()
 			echo "${red}Error: Minutes and seconds must take a value of less than 60${normal}"; exit 1
 		fi
 
-		# Time in miliseconds to split the chapters file
+		# Time in milliseconds to split the chapters file
 		p=$(($(($((10#$h)) * 3600000)) + $(($((10#$m)) * 60000)) + $(($((10#$s)) * 1000)) + $((10#$f))))
 		if [[ $sign == "-" ]]; then
 			p=$(($pb - $p))
@@ -1902,10 +1902,10 @@ split_txt ()
 		denominator="${BASH_REMATCH[3]}"
 
 		if ((numerator == 0)) || ((denominator == 0)) || ((numerator >= denominator)); then
-			echo "${red}Error: The numerator must be less than the denominator and both must not de 0.${normal}"; exit 1
+			echo "${red}Error: The numerator must be less than the denominator and both must not be 0.${normal}"; exit 1
 		fi
 
-		# Time in miliseconds to split the chapters file
+		# Time in milliseconds to split the chapters file
 		if [[ $sign == "-" ]]; then
 			p=$((pb*((denominator - numerator))/denominator))
 		else
@@ -1947,7 +1947,7 @@ split_txt ()
 		denominator="${BASH_REMATCH[3]}"
 
 		if ((numerator == 0)) || ((denominator == 0)) || ((numerator >= denominator)); then
-			echo "${red}Error: The numerator must be less than the denominator and both must not de 0.${normal}"; exit 1
+			echo "${red}Error: The numerator must be less than the denominator and both must not be 0.${normal}"; exit 1
 		fi
 
 		if [[ $sign == "-" ]]; then
