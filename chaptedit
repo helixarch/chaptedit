@@ -76,88 +76,117 @@ ${cyan}DESCRIPTION${normal}
 ${cyan}PARAMETERS${normal}
   ${bold}-i \"Input file\"${normal}
       Chapters file to process.
+      Supports wildcards and relative or absolute paths.
+      Open a chapters file with no other parameters to perform basic clean-up (empty chapters are removed etc).
       Does not work with -D parameter (synchronize with directory) and -r parameter (recurse).
 
   ${bold}-d \"Input directory\"${normal}
-      Directory containing chapters files to process. Works with all parameters except with -y (synchronize with
-      file) and -j (join two txt chapters files). Instead of Synchronize with file you can use Synchronize with directory
-      (-D parameter).
+      Directory containing chapters files to process.
+      Supports wildcards and relative or absolute paths.
+      Open a directory with no other parameters to perform basic clean-up to all contained chapter files.
+      Works with all parameters except with -y (synchronize with file) and -j (join two chapters files).
+      Instead of Synchronize with file you can use Synchronize with directory (-D parameter).
 
   ${bold}-r [Switch]${normal}
-      Searches recursively for chapters files in directory given with -d parameter.
+      Recurse.
+      Optional switch, to be used with -d.
+      Searches recursively for chapters files.
 
   ${bold}-b [Switch]${normal}
-      Backup input file. Makes a copy of the input file in the same directory with the .bak suffix.
+      Backup input file.
+      Optional switch that can be used with any other parameter.
+      Makes a copy of the input file in the same directory with the .bak suffix.
       If the backup already exists, it does nothing. If -b is not set and the backup file exists, it is removed.
-      Can be used with any other parameter.
 
   ${bold}-s (+/-/a/z)hh:mm:ss,fff${normal}
-      Shift time. Plus sign (or no sign at all) adds time, where the minus sign subtracts time.
-      \"a\" and \"z\" indicate absolute time value for the beginning and end time of the chapters file respectively.
+      Shift time.
+      Plus sign (or no sign at all) adds time, where the minus sign subtracts time.
+      \"a\" and \"z\" indicate absolute time value for the beginning and end time of the chapters file
+      respectively. In this case the shifting time will be calculated.
 
   ${bold}-p [Switch]${normal}
+      Convert fps.
       Change the fps from NTSC (23.976/29.970) to PAL (25).
 
   ${bold}-n [Switch]${normal}
+      Convert fps.
       Change the fps from PAL (25) to NTSC (23.976/29.970).
 
   ${bold}-a (+/-)hh:mm:ss,fff (+/-)hh:mm:ss,fff${normal}
-      Adjust time. Beginning and end time will be set to these values and the rest will be adjusted proportionally.
+      Adjust time.
+      Beginning and end time will be set to these values and the rest will be adjusted proportionally.
       The time value is absolute if you don't use the +/- and will be shifted if you do use either sign.
 
   ${bold}-1 (+/-)hh:mm:ss,fff${normal}
-      Adjust time. Beginning time will be set to this value and the rest will be adjusted proportionally.
+      Adjust time.
+      Beginning time will be set to this value and the rest will be adjusted proportionally.
       The time value is absolute if you don't use the +/- and will be shifted if you do use either sign.
 
   ${bold}-2 (+/-)hh:mm:ss,fff${normal}
-      Adjust time. End time will be set to this value and the rest will be adjusted proportionally.
+      Adjust time.
+      End time will be set to this value and the rest will be adjusted proportionally.
       The time value is absolute if you don't use the +/- and will be shifted if you do use either sign.
+      -1 and -2 parameters can be combined (equivalent of using just the -a parameter).
 
   ${bold}-y \"Input file\"${normal}
-      Synchronize with file. The chapter times of the txt given with -i parameter will be adjusted with
-      beginning and end time of this txt.
+      Synchronize with file.
+      The chapter times of the file given with -i parameter will be adjusted with beginning and end time
+      of this file.
 
   ${bold}-D \"Input directory\"${normal}
-      Synchronize with directory. To be used only with -d parameter.
-      This directory contains txt chapters files with correct times.
-      The two directories (given with -d and -D parameters) must contain txt chapters files with the same names.
-      Synchronizes each txt chapters file in the input directory (-d) with the txt chapters file with the
+      Synchronize with directory.
+      To be used only with -d parameter.
+      This directory contains chapters files with correct times.
+      Supports relative or absolute paths.
+      The two directories (given with -d and -D parameters) must contain chapters files with the same names.
+      Synchronizes each chapters file in the input directory (-d) with the chapters file with the
       same name that's in the directory (-D).
 
   ${bold}-Y [Switch]${normal}
-      Synchronize chapter times one by one. Optional switch to be used with -y and -D. Replaces times of file
-      to be synchronized with times of synchronization file, respectively.
+      Synchronize chapter times one by one.
+      Optional switch, to be used with -y or -D.
+      Replaces times of file to be synchronized with times of synchronization file, respectively.
 
   ${bold}-f \"Find text\"${normal}
-      Search, case insensitive. The double quotes are necessary.
+      Search, case insensitive.
+      The double quotes are necessary.
 
   ${bold}-F \"Find text\"${normal}
-      Search, case sensitive. The double quotes are necessary.
+      Search, case sensitive.
+      The double quotes are necessary.
 
   ${bold}-e \"Text to be replaced\" \"New text\"${normal}
-      Replace, case insensitive. The double quotes are necessary.
+      Replace, case insensitive.
+      The double quotes are necessary.
 
   ${bold}-E \"Text to be replaced\" \"New text\"${normal}
-      Replace, case sensitive. The double quotes are necessary.
+      Replace, case sensitive.
+      The double quotes are necessary.
 
   ${bold}-j \"Input file\"${normal}
-      Join two txt chapters files. This txt will be appended to the txt given with -i parameter.
+      Join two chapters files.
+      Supports relative or absolute paths.
+      This file will be appended to the file given with -i parameter.
 
   ${bold}-J hh:mm:ss,fff${normal}
-      Join time. Optional parameter, to be used with -j. Shifts the time after beginning of the second txt
-      in the output file.
+      Join time.
+      Optional parameter, to be used with -j.
+      Shifts the time after beginning of the second file in the output file.
 
   ${bold}-x (+/-)hh:mm:ss,fff${normal} or ${bold}(+/-)CHAPT_INTEGER${normal} or ${bold}(+/-)INTEGER:INTEGERt${normal} or ${bold}(+/-)INTEGER:INTEGERn${normal}
-      Split txt chapters file. Can take 4 different syntaxes:
-        i)   (+/-)hh:mm:ss,fff:     splitting time.
-        ii)  (+/-)CHAPT_INTEGER:      splitting chapter integer.
-        iii) (+/-)INTEGER:INTEGERt: fraction where we split the chapters file according to total time.
-        iv)  (+/-)INTEGER:INTEGERn: fraction where we split the chapters file according to number of chapters.
+      Split chapters file.
+      Can take 4 different syntaxes:
+        1. (+/-)hh:mm:ss,fff:     splitting time.
+        2. (+/-)CHAPT_INTEGER:    splitting chapter integer.
+        3. (+/-)INTEGER:INTEGERt: fraction where we split the chapters file according to total time.
+        4. (+/-)INTEGER:INTEGERn: fraction where we split the chapters file according to number of chapters.
       The minus sign means that counting begins from the end of the chapters file.
       The plus sign means that counting begins from the beginning. (Equivalent of using no sign at all).
 
   ${bold}-X [Switch]${normal}
-      Split time. Optional switch, to be used with -x. Makes the second generated txt begin with time 00:00:00,000.
+      Split time.
+      Optional switch, to be used with -x.
+      Makes the second generated txt begin with time 00:00:00,000.
       Can be used with any -x syntax.
 
   ${bold}-h [Switch]${normal}
@@ -169,12 +198,10 @@ ${cyan}PARAMETERS${normal}
 examplecounter=1
 
 text2="${cyan}NOTES${normal}
-  • If the argument is a chapters file you can give a relative or absolute path or a filename in the working directory.
+  • -i (input file) or -d (input directory) is required in every case.
   • Filenames must be enclosed in quotes if they contain spaces or other special characters (including wildcards).
   • Do not use \"~\" or \"\$HOME\" to symbolize the home directory. Write the text instead (/home/yourname).
-  • -i (input file) or -d (input directory) is required in every case.
   • If only -i parameter is used then the chapters file goes through a basic clean-up (empty chapters are removed etc.)
-  • -1 and -2 parameters (adjust time) can be combined (equivalent of using just the -a parameter).
   • You can put different parameters in the same command and they'll run one after the other.
   • Bellow you'll find examples for every parameter.\n\n\n"
 
@@ -280,7 +307,6 @@ text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   Shifts beginning time by +00:00:02,600 and end time by -00:00:05,920.
   Both times are relative.\n\n"
 
-
 text2+="  ${bold}${green}Example $((exmpl=examplecounter++))${normal}
   chaptedit -i foo.txt -a 00:00:17,360 -00:00:05,920
   Sets beginning time to 00:00:17,360 and shifts end time by -00:00:05,920.\n\n"
@@ -315,12 +341,12 @@ text2+="  ${bold}Synchronize with directory${normal}
 
   ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d foo_directory -D boo_directory
-  Synchronizes each txt chapters file in the directory \"foo_directory\" with the txt chapters file
+  Synchronizes each chapters file in the directory \"foo_directory\" with the chapters file
   that has the same name that's in the directory \"boo_directory\".\n\n"
 
 text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d foo_directory -D boo_directory -Y
-  Synchronizes each chapters file's times in the directory \"foo_directory\" with the txt
+  Synchronizes each chapters file's times in the directory \"foo_directory\" with the
   chapters file's times that has the same name that's in the directory \"boo_directory\",
   respectively.\n\n\n"
 
@@ -346,8 +372,8 @@ text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -i foo.txt -E \"i'm\" \"I'm\"
   Replaces text \"i'm\" (case sensitive) with \"I'm\".\n\n\n"
 
-  
-text2+="  ${bold}Join two txt${normal}
+
+text2+="  ${bold}Join two chapters files${normal}
 
   ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -i foo.txt -j boo.txt
@@ -360,7 +386,7 @@ text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   The chapter times in boo.txt are shifted by 00:48:05,956 before added.\n\n\n"
 
 
-text2+="  ${bold}Split txt to two files${normal}
+text2+="  ${bold}Split chapters file to two files${normal}
 
   ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -i foo.txt -x 01:02:39,000
@@ -561,7 +587,7 @@ read_file ()
 	elif [[ ${temp0array[0]} == "<?xml"* ]]; then
 		filetype="xml"
 	else
-		echo "${red}Error: \"$1\" is not a valid txt file${normal}"
+		echo "${red}Error: \"$1\" is not a valid chapters file${normal}"
 		return 1
 	fi
 
