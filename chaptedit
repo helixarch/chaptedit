@@ -587,7 +587,7 @@ read_file ()
 	elif [[ ${temp0array[0]} == "<?xml"* ]]; then
 		filetype="xml"
 	else
-		echo "${red}Error: \"$1\" is not a valid chapters file${normal}"
+		arraytxt=()
 		return 1
 	fi
 
@@ -622,7 +622,8 @@ read_file ()
 				if (( 10#$index == 10#$index_name )); then
 					chaptdict[$time]=$name
 				else
-					echo "${red}Error: \"$1\" is not a valid chapters file. The problem is in chapter $index.${normal}"
+					echo "${red}Error: Problem in chapter $index.${normal}"
+					arraytxt=()
 					return 1
 				fi
 			fi
@@ -719,11 +720,6 @@ basic_clean_up ()
 
 	read_file "$inputfilename"
 
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
-
 	# Check if the txt is OK
 	check_txt "$inputfilename" "Purifying \"$inputfilename\""
 
@@ -769,11 +765,6 @@ shift_time ()
 
 	# Read text file to arraytxt
 	read_file "$inputfilename"
-
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
 
 	# Check if the txt is OK
 	check_txt "$inputfilename" "Shifting time of \"$inputfilename\" by $shifttime..."
@@ -877,11 +868,6 @@ change_fps ()
 	# Read text file to arraytxt
 	read_file "$inputfilename"
 
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
-
 	# Check if the txt is OK
 	if [[ $pal2ntsc ]]; then
 		check_txt "$inputfilename" "Changing fps of \"$inputfilename\" from PAL (25) to NTSC (23.976 or 29.970)..."
@@ -967,11 +953,6 @@ adjust_time ()
 
 	# Read text file to arraytxt
 	read_file "$inputfilename"
-
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
 
 	# Check if the txt is OK
 	check_txt "$inputfilename" "Adjusting time of \"$inputfilename\"..."
@@ -1096,11 +1077,6 @@ adjust_time_v2 ()
 
 	# Read text file to arraytxt
 	read_file "$inputfilename"
-
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
 
 	# Check if the txt is OK
 	check_txt "$inputfilename" "Adjusting time of \"$inputfilename\"..."
@@ -1281,11 +1257,6 @@ synchronize_with_file ()
 	# Read file to synchronize to
 	read_file "$synchronizefile"
 
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
-
 	# Check if the txt is OK
 	check_txt "$synchronizefile"
 
@@ -1348,11 +1319,6 @@ synchronize_with_file ()
 
 		# Read text file to arraytxt
 		read_file "$inputfilename"
-
-		# Exit this function if the return code of read_file is not 0
-		if (($? != 0)); then
-			return 1
-		fi
 
 		# Check if the txt is OK
 		check_txt "$inputfilename" "Synchronizing \"$inputfilename\" with \"$synchronizefile\"..."
@@ -1458,11 +1424,6 @@ synchronize_with_file ()
 		# Read text file to arraytxt
 		read_file "$inputfilename"
 
-		# Exit this function if the return code of read_file is not 0
-		if (($? != 0)); then
-			return 1
-		fi
-
 		# Check if the txt is OK
 		check_txt "$inputfilename" "Synchronizing \"$inputfilename\" with \"$synchronizefile\"..."
 
@@ -1555,10 +1516,8 @@ replace_text ()
 	if [[ $replace3 ]]; then
 		read_file "$inputfilename"
 
-		# Exit this function if the return code of read_file is not 0
-		if (($? != 0)); then
-			return 1
-		fi
+		# Check if the txt is OK
+		check_txt "$inputfilename"
 
 		temparray=( $(printf "%s\n" "${arraytxt[@]}" | iconv -f $encoding -t utf-8 | sed -b s"/$replace1/$replace2/g") )
 		# If the conversion from UTF-8 to the original encoding isn't possible, keep the UTF-8
@@ -1575,10 +1534,8 @@ replace_text ()
 	else
 		read_file "$inputfilename"
 
-		# Exit this function if the return code of read_file is not 0
-		if (($? != 0)); then
-			return 1
-		fi
+		# Check if the txt is OK
+		check_txt "$inputfilename"
 
 		temparray=( $(printf "%s\n" "${arraytxt[@]}" | iconv -f $encoding -t utf-8 | sed -b s"/$replace1/$replace2/ig") )
 		# If the conversion from UTF-8 to the original encoding isn't possible, keep the UTF-8
@@ -1623,11 +1580,6 @@ join_files ()
 	# Read text file to arraytxt
 	read_file "$jointxt"
 
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
-
 	# Check if the txt is OK
 	check_txt "$jointxt"
 
@@ -1653,11 +1605,6 @@ join_files ()
 
 	# Read text file to arraytxt
 	read_file "$inputfilename"
-
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
 
 	# Check if the txt is OK
 	check_txt "$inputfilename"
@@ -1803,11 +1750,6 @@ split_file ()
 
 	# Read text file to arraytxt
 	read_file "$inputfilename"
-
-	# Exit this function if the return code of read_file is not 0
-	if (($? != 0)); then
-		return 1
-	fi
 
 	# Check if the txt is OK
 	check_txt "$inputfilename" "Splitting \"$inputfilename\"..."
