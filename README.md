@@ -27,7 +27,7 @@ Can read xml type as well, but the output is always txt.
 - - - - -
 
 ### SCREENSHOTS
-![Help examples](https://s1.postimg.org/sue3f7kan/chaptedit_help_examples.png)  
+![Help examples](https://s1.postimg.org/sm05tqtkv/chaptedit_help_examples.png)  
 Help examples
 
 <br>
