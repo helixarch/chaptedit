@@ -228,16 +228,16 @@ text2+="  ${bold}${green}Example $((examplecounter++))${normal}
 
 text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d foo_directory -r
-  Same as above, but also processes chapters found in subdirectories (unlimited depth) as well.\n\n"
+  Same as above, but also processes chapters files found in subdirectories (unlimited depth) as well.\n\n"
 
 text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d \"Season*\" -b
-  Runs Basic clean-up for all chapters found in all folders that begin with \"Season\" and
+  Runs Basic clean-up for all chapters files found in all folders that begin with \"Season\" and
   creates a backup for each chapters file.\n\n"
 
 text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d \"Season [1-3,5]\"
-  Runs Basic clean-up for all chapters found in the folders \"Season 1\", \"Season 2\", \"Season 3\" and \"Season 5\".\n\n\n"
+  Runs Basic clean-up for all chapters files found in the folders \"Season 1\", \"Season 2\", \"Season 3\" and \"Season 5\".\n\n\n"
 
 
 text2+="  ${bold}Shift time${normal}
@@ -292,7 +292,7 @@ text2+="  ${bold}${green}Example $((examplecounter++))${normal}
 
 text2+="  ${bold}${green}Example $((examplecounter++))${normal}
   chaptedit -d foo_directory -r -n
-  Same as above, but also processes chapters found in subdirectories (unlimited depth) as well.\n\n\n"
+  Same as above, but also processes chapters files found in subdirectories (unlimited depth) as well.\n\n\n"
 
 
 text2+="  ${bold}Adjust time${normal}
