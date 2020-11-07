@@ -822,6 +822,28 @@ shift_time ()
 	fi
 
 
+	# Check for negative times
+	for ((i=0; i<=${#arraytxt[@]}; i++)); do
+		line=${arraytxt[$i]}
+
+		if [[ $line =~ $regextime ]]; then
+			chaptcounter1="${BASH_REMATCH[1]}"
+			h1="${BASH_REMATCH[2]}"
+			m1="${BASH_REMATCH[3]}"
+			s1="${BASH_REMATCH[4]}"
+			f1="${BASH_REMATCH[5]}"
+
+			p1=$(($(($((10#$h1)) * 3600000)) + $(($((10#$m1)) * 60000)) + $(($((10#$s1)) * 1000)) + $((10#$f1))))
+
+			p1_new=$(($p1 + $p))
+
+			if (( $i > 0 )) && (( $p1_new < 0 )); then
+				echo "${red}Error: With this shifting value, a chapter, other than the first, would have negative time.${normal}"; return 1
+			fi
+		fi
+	done
+
+
 	# Process the array
 	for ((i=0; i<=${#arraytxt[@]}; i++)); do
 		line=${arraytxt[$i]}
@@ -837,8 +859,12 @@ shift_time ()
 
 			p1_new=$(($p1 + $p))
 
-			if (( $p1_new < 0 )); then
-				echo "${red}Error: Negative time not allowed. Check the shifting value.${normal}"; return 1
+			if (( $i == 0 )) && (( $p1_new < 0 )); then
+				echo "${bold}${red}Warning: With this shifting value, the first chapter would have negative time. Fixed to 00:00:00,000.${normal}"
+				p1_new=0
+			elif (( $i == 0 )) && (( $p1 == 0 )) && (( $p > 0 )); then
+				echo "${bold}${red}Warning: The first chapter was not shifted so that it still starts at 00:00:00,000.${normal}"
+				p1_new=0
 			fi
 
 			j1=$(printf "%02d:%02d:%02d.%03d" $(($p1_new / 3600000)) $(($(($p1_new % 3600000)) / 60000)) $(($(($p1_new % 60000)) / 1000)) $(($p1_new % 1000)))
