@@ -65,7 +65,7 @@ esac
 
 text1="
 ${cyan}NAME${normal}
-  chaptedit
+  chaptedit v1.2.2
 
 
 ${cyan}DESCRIPTION${normal}
